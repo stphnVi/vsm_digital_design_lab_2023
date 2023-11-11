@@ -1,33 +1,31 @@
-module ALU #(parameter n = 4) (
-  input logic [n-1:0] SrcA,
-  input logic [n-1:0] SrcB,
-  input logic [1:0] operation, // Selector de operación
-  output logic [n-1:0] result,
-  output logic Z, // Flag de cero
-  output logic C, // Flag de acarreo
-  output logic V, // Flag de desborde
-  output logic N // Flag de negativo
+module alu #(parameter n = 32) (
+    input logic [n-1:0] SrcA,
+    input logic [n-1:0] SrcB,
+    input logic [2:0] ALUControl,
+    output logic [n-1:0] ALUResult,
+    output logic [3:0] ALUFlags
 );
 
-  logic [n-1:0] selected_result;
+    logic [n-1:0] selected_result;
 
-  always_comb begin
-    case (operation)
-      2'b00: selected_result = SrcA + SrcB; 
-      2'b01: selected_result = SrcA - SrcB; 
-      2'b10: selected_result = SrcA & SrcB; // Cambiado de '&&' a '&'
-      2'b11: selected_result = SrcA | SrcB;
+    always_comb begin
+        case (ALUControl)
+            3'b000: selected_result = SrcA + SrcB;
+            3'b001: selected_result = SrcA - SrcB;
+            3'b010: selected_result = SrcA & SrcB;
+            3'b011: selected_result = SrcA | SrcB;
+            // Puedes añadir más operaciones según sea necesario.
 
-      default: selected_result = '0; // Valor por defecto
-    endcase
-  end
+            default: selected_result = '0;
+        endcase
+    end
 
-  // Generación de flags
-  assign Z = (selected_result == 0);
-  assign C = selected_result[n-1];
-  assign V = (selected_result[n-1] ^ C);
-  assign N = selected_result[n-1];
+    // Generación de flags
+    assign ALUFlags[0] = (selected_result == 0);
+    assign ALUFlags[1] = (selected_result < 0);
+    assign ALUFlags[2] = (selected_result[n-1] & ~SrcB[n-1] & ~selected_result[n-1]) | (~SrcA[n-1] & SrcB[n-1] & selected_result[n-1]);
+    assign ALUFlags[3] = (selected_result[n-1] ^ ALUFlags[2]);
 
-  assign result = selected_result;
+    assign ALUResult = selected_result;
+
 endmodule
-
