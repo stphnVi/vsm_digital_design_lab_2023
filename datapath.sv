@@ -33,7 +33,7 @@ SrcA, WriteData);
 mux2 #(32) resmux(ALUResult, ReadData, MemtoReg, Result);
 extend ext(Instr[23:0], ImmSrc, ExtImm);
 
-// ALU logic 
+// ALU logic
 mux2 #(32) srcbmux(WriteData, ExtImm, ALUSrc, SrcB);
 alu alu(SrcA, SrcB, ALUControl, ALUResult, ALUFlags);
 
