@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/modelsim,alteraquartusii
-# Edit at https://www.toptal.com/developers/gitignore?templates=modelsim,alteraquartusii
+# Created by https://www.toptal.com/developers/gitignore/api/alteraquartusii,modelsim
+# Edit at https://www.toptal.com/developers/gitignore?templates=alteraquartusii,modelsim
 
 ### AlteraQuartusII ###
 ##list taken from http://www.alterawiki.com/wiki/Version_Control (01.10.2015)
@@ -81,4 +81,4 @@ transcript*
 sc_dpiheader.h
 vsim.dbg
 
-# End of https://www.toptal.com/developers/gitignore/api/modelsim,alteraquartusii
+# End of https://www.toptal.com/developers/gitignore/api/alteraquartusii,modelsim
