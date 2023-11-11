@@ -5,7 +5,7 @@ module testbench();
 	logic MemWrite;
 	
 	// instantiate device to be tested
-	top dut(clk, reset, WriteData, DataAdr, MemWrite);
+	top arm(clk, reset, WriteData, DataAdr, MemWrite);
 	// initialize test
 	initial
 	begin
