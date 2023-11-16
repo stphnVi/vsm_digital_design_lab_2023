@@ -23,6 +23,24 @@ module top(input 	 logic 			clk, reset,
 				.WriteData(WriteData), 
 				.ReadData(ReadData));
 				
+				
+	logic [31:0] rd1, rd2, rd3, rd4;
+	logic we1, we2, we3, we4;
+	logic [31:0] addr1, addr2, addr3, addr4;
+	logic [31:0] wd1, wd2, wd3, wd4;
+	logic [31:0] rd;
+
+	chipset_4regions chipsetx( 
+		 .we(MemWrite),
+		 .addr(DataAddr),
+		 .wd(WriteData),
+		 .rd1(rd1), .rd2(rd2), .rd3(rd3), .rd4(rd4),
+		 .we1(we1), .we2(we2), .we3(we3), .we4(we4),
+		 .addr1(addr1), .addr2(addr2), .addr3(addr3), .addr4(addr4), 
+		 .wd1(wd1), .wd2(wd2), .wd3(wd3), .wd4(wd4),
+		 .rd(ReadData)
+	);
+				
 	//imem imem(PC, Instr);
 	my_rom rom(
 				.clk_a(cpu_clock),
