@@ -1,5 +1,5 @@
 module arm(input 	logic 		 clk, reset,
-			  output logic [31:0] PC,
+			  output logic [31:0] PCNext,
 			  input 	logic [31:0] Instr,
 			  output logic 		 MemWrite,
 			  output logic [31:0] ALUResult, WriteData,
@@ -9,6 +9,8 @@ logic [3:0] ALUFlags;
 logic 		RegWrite,
 			   ALUSrc, MemtoReg, PCSrc;
 logic [1:0] RegSrc, ImmSrc, ALUControl;
+
+
 
 controller c(
 				clk, 
@@ -36,7 +38,7 @@ datapath dp(
 				MemtoReg, 
 				PCSrc,
 				ALUFlags, 
-				PC, 
+				PCNext, 
 				Instr,
 				ALUResult, 
 				WriteData, 
