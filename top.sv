@@ -32,13 +32,13 @@ module top(input 	 logic 			clk, reset,
 				.rd_a(Instr));
 				//.rd_b(rd1));
 		
-	//my_ram ram(
-				//.clk(clk),
-				//.we(MemWrite),
-				//.addr(DataAdr),
-				//.wd(WriteData),
-				//.rd(ReadData));
+	my_ram ram(
+				.clk(clk),
+				.we(MemWrite),
+				.addr(DataAdr),
+			   .wd(WriteData),
+				.rd(ReadData));
 		
 	
-	dmem dmem(clk, MemWrite, DataAdr, WriteData, ReadData);
+	//dmem dmem(clk, MemWrite, DataAdr, WriteData, ReadData);
 endmodule

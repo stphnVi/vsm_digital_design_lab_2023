@@ -11,7 +11,7 @@ module alu #(parameter n = 32) (
 	 logic [n:0] sumres;
 	 logic [n-1:0] SrcBSel;
 	 assign carryIn = ALUControl[0];
-	 assign SrcBSel = ALUControl[0]? SrcB: ~SrcB;
+	 assign SrcBSel = ALUControl[0]? ~SrcB: SrcB;
 	 assign sumres = SrcA + SrcBSel + carryIn;
 	 
 	 logic flagCarry, flagOverflow;
@@ -20,12 +20,12 @@ module alu #(parameter n = 32) (
 		  flagCarry =0;
 		  flagOverflow = 0;
         case (ALUControl)
-            3'b000, 3'b001: begin 
+            2'b00, 2'b01: begin 
 					{flagCarry, selected_result} = sumres;
 					flagOverflow = ~(ALUControl[0]^SrcA[n-1]^SrcB[n-1]) & (SrcA[n-1]^selected_result[n-1]);
 				end
-            3'b010: selected_result = SrcA & SrcB;
-            3'b011: selected_result = SrcA | SrcB;
+            2'b10: selected_result = SrcA & SrcB;
+            2'b11: selected_result = SrcA | SrcB;
             // Puedes añadir más operaciones según sea necesario.
 
             default: selected_result = '0;
