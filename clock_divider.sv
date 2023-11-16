@@ -1,24 +1,17 @@
 // clock divider 
-module clock_divider #(parameter div_value = 0) (
-    input logic clk, // 50 MHz
-    output logic divided_clk // 25 MHz
+module clock_divider #(parameter DIV=2)(
+	input clk_in, 
+	output reg clk_out
 );
-
-    // Valor de división = 100 MHz / (2 * frecuencia deseada) - 1
-    // Contador
-    integer counter_value = 0;
-
-    always @(posedge clk)
-    begin
-        if (counter_value == div_value)
-        begin
-            counter_value = 0;
-            divided_clk = ~divided_clk;
-        end
-        else
-        begin
-            counter_value = counter_value + 1;
-        end
-    end
+	reg [$clog2(DIV):0] counter = DIV-1;
+	
+	always @(posedge clk_in) begin
+		if(counter < (DIV-1)) begin
+			counter <= counter + 1;	
+		end else begin
+			counter <= 0;
+		end
+		clk_out <= (counter < (DIV/2))? 1'b1 : 1'b0;
+	end
 
 endmodule
