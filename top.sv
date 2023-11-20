@@ -52,10 +52,10 @@ module top(input 	 logic 			clk, reset,
 		
 	my_ram ram(
 				.clk(clk),
-				.we(MemWrite),
-				.addr(DataAdr),
-			   .wd(WriteData),
-				.rd(ReadData));
+				.we(we2),
+				.addr(addr2),
+			   .wd(wd2),
+				.rd(rd));
 		
 	
 	//dmem dmem(clk, MemWrite, DataAdr, WriteData, ReadData);
