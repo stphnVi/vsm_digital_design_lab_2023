@@ -66,7 +66,7 @@ module top(input 	 logic 			clk_vga, clk, reset,
 	logic[7:0] image_rom_rd_aux;
 
 	instr_rom imem(
-		 .clk_a(cpu_clk),
+		 .clk_a(cpu_clock),
 		 .clk_b(clk),
 		 .r_addr_a(instr_addr),
 		 .r_addr_b(addr1),
