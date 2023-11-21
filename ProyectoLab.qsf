@@ -54,7 +54,7 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.2 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.1 Lite Edition"
 set_global_assignment -name TOP_LEVEL_ENTITY top
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH testbench -section_id eda_simulation
@@ -89,6 +89,10 @@ set_global_assignment -name EDA_TEST_BENCH_FILE decoder.sv -section_id testbench
 set_global_assignment -name EDA_TEST_BENCH_FILE controller.sv -section_id testbench
 set_global_assignment -name EDA_TEST_BENCH_FILE my_ram.sv -section_id testbench
 set_global_assignment -name EDA_TEST_BENCH_FILE chipset_4regions.sv -section_id testbench
+set_global_assignment -name SYSTEMVERILOG_FILE counter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vga_driver.sv
+set_global_assignment -name SYSTEMVERILOG_FILE comparator.sv
+set_global_assignment -name SYSTEMVERILOG_FILE instr_rom.sv
 set_global_assignment -name SYSTEMVERILOG_FILE vga_ram.sv
 set_global_assignment -name SYSTEMVERILOG_FILE sync_data_ram.sv
 set_global_assignment -name SYSTEMVERILOG_FILE vga/clock_divider_vga.sv
