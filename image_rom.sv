@@ -9,7 +9,8 @@ module image_rom
 
 	initial begin
 		//$readmemb("../../code/build/image.txt", rom);
-		$readmemb("/home/josfemova/REPOSITORIOS/ngonzales_jmorales_smoya_digital_design_lab_2023/proyecto/code/build/image.txt",rom);
+		//$readmemb(dir,rom);
+		$readmemb("C:/Users/valer/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/image.txt",rom);
 	end
 
 	always @ (posedge clk)
