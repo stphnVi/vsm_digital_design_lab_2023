@@ -1,6 +1,6 @@
 module top(input 	 logic 			clk_vga, clk, reset,
 				input [31:0] vga_pixel_addr,
-				input [31:0] ctrl_val,
+				input [31:0] ctrl_val1, ctrl_val1,
 				output [7:0] vga_pixel_val);
 				
 	logic [31:0] PCNext, Instr, ReadData;
@@ -39,7 +39,7 @@ module top(input 	 logic 			clk_vga, clk, reset,
 		 .addr(DataAddr),
 		 .wd(WriteData),
 		 .rd1(rd1), .rd2(rd2), .rd3(rd3), .rd4(rd4),
-		 .ctrl_val(ctrl_val),
+		 .ctrl_val1(ctrl_val1), .ctrl_val2(ctrl_val2),
 		 .we1(we1), .we2(we2), .we3(we3), .we4(we4),
 		 .addr1(addr1), .addr2(addr2), .addr3(addr3), .addr4(addr4), 
 		 .wd1(wd1), .wd2(wd2), .wd3(wd3), .wd4(wd4),

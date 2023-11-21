@@ -8,7 +8,8 @@ module instr_rom
 	reg [(WIDTH-1):0] rom[(LENGTH-1):0];
 
 	initial begin
-		$readmemh("C:/Users/valer/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/memfile.dat",rom);
+		//$readmemh("C:/Users/valer/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/memfile.dat",rom);
+		$readmemh("C:/Users/steph/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/memfile.dat",rom);
 	end
 
 	always @(posedge clk_a)
