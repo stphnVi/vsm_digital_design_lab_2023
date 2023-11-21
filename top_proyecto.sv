@@ -1,6 +1,6 @@
 module top_proyecto(
 	input clk_50MHz,      
-	input reset,
+	//input reset,
 	input ctrl_flag_1,
 	input ctrl_flag_2,
 	//señales VGA
@@ -13,6 +13,9 @@ module top_proyecto(
 	output sync,
 	output blank
 );
+
+logic reset;
+assign reset = 0;
 
 clock_divider #(.DIV(2)) divider2(.clk_in(clk_50MHz), .clk_out(clk_vga));
 
