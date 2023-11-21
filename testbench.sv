@@ -3,7 +3,7 @@ module testbench();
 	logic reset;
 	logic [31:0] vga_pixel_addr = 32'd294;
 	logic  [7:0] vga_pixel_val;
-	reg [31:0] ctrl_val
+	reg [31:0] ctrl_val;
 	
 	clock_div #(.DIV(2)) divider2(.clk_in(clk), .clk_out(clk_vga));
 	proyecto_cpu_top dut(
