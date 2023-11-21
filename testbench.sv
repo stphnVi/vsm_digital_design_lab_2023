@@ -1,15 +1,31 @@
 module testbench();
-	logic clk;
+	logic vga_clk, clk;
 	logic reset;
-	logic [31:0] WriteData, DataAdr;
-	logic MemWrite;
+	logic [31:0] vga_pixel_addr = 32'd294;
+	logic  [7:0] vga_pixel_val;
+	reg [31:0] ctrl_val
 	
-	// instantiate device to be tested
-	top arm(clk, reset, WriteData, DataAdr, MemWrite);
+	clock_div #(.DIV(2)) divider2(.clk_in(clk), .clk_out(clk_vga));
+	proyecto_cpu_top dut(
+    .clk_vga(clk_vga), 
+    .clk(clk), 
+    .reset(reset),
+    .ctrl_val_1(ctrl_val_1), .ctrl_val_2(ctrl_val_2), .ctrl_val_3(ctrl_val_3),
+    .vga_pixel_addr(vga_pixel_addr), 
+    .vga_pixel_val(vga_pixel_val)
+	);
+
 	// initialize test
 	initial
 	begin
-	reset <= 1; # 22; reset <= 0;
+	ctrl_val <=32'b1;
+	reset <= 1; #20; reset <= 0;
+	ctrl_val <=32'b0;
+	#200
+	reset <= 1; #20; reset <= 0;
+	#200
+	ctrl_val <=32'b1;
+
 	end
 	// generate clock to sequence tests
 	always
@@ -19,14 +35,9 @@ module testbench();
 
 	always @(negedge clk)
 	begin
-	if(MemWrite) begin
-	if(DataAdr === 100 & WriteData === 7) begin
-	$display("Simulation succeeded");
-	$stop;
-	end else if (DataAdr !== 96) begin
-	$display("Simulation failed");
-	$stop;
-	end
+	if(vga_pixel_val == 8'b00011100) begin
+			  $display("Simulation succeeded");
+			  $stop;
 	end
 	end
 endmodule
