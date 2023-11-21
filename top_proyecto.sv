@@ -23,19 +23,19 @@ wire [7:0] gray_val;
 reg [9:0] current_x = 0;
 reg [9:0] current_y = 0;
 reg [9:0] next_x, next_y;
-reg [31:0] ctrl_val_1, ctrl_val_2, ctrl_val_3;
+reg [31:0] ctrl_val1, ctrl_val2;
 
 wire [31:0] img_ram_addr;
 assign img_ram_addr = ((next_x < 256) && (next_y <256))? ((next_y*256)+next_x) : 32'h0;
 
 always @(posedge clk_50MHz, posedge reset) begin 
 	if(reset) begin
-		ctrl_val_1 <= 0;
-		ctrl_val_2 <= 0;
+		ctrl_val1 <= 0;
+		ctrl_val2 <= 0;
 	end 
 	else begin 
-		if(~ctrl_flag_1) ctrl_val_1 <= 32'b1;
-		if(~ctrl_flag_2) ctrl_val_2 <= 32'b1;
+		if(~ctrl_flag_1) ctrl_val1 <= 32'b1;
+		if(~ctrl_flag_2) ctrl_val2 <= 32'b1;
 	end 
 end
 
@@ -54,7 +54,8 @@ top cpu_top(
 	.clk(clk_50MHz),
 	.clk_vga(clk_vga),
 	.reset(reset), 
-    .ctrl_val1(ctrl_val1), .ctrl_val2(ctrl_val2),
+   .ctrl_val1(ctrl_val1), 
+	.ctrl_val2(ctrl_val2),
 	.vga_pixel_addr(img_ram_addr),
 	.vga_pixel_val(gray_val)
 );
