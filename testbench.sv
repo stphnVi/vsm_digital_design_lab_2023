@@ -6,7 +6,8 @@ module testbench();
 	reg [31:0] ctrl_val;
 	
 	clock_div #(.DIV(2)) divider2(.clk_in(clk), .clk_out(clk_vga));
-	proyecto_cpu_top dut(
+	
+	top dut(
     .clk_vga(clk_vga), 
     .clk(clk), 
     .reset(reset),
