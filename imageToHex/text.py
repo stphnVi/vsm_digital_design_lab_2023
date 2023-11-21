@@ -1,6 +1,6 @@
 import binascii
 
-with open('C:/Users/steph/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/2.png', 'rb') as f:
+with open('C:/Users/steph/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/bratz.jpeg', 'rb') as f:
     content = f.read()
 # print(binascii.hexlify(content))
 
