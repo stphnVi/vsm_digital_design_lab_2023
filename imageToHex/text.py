@@ -1,16 +1,25 @@
-import binascii
+import cv2
+import argparse
 
-with open('C:/Users/steph/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/bratz.jpeg', 'rb') as f:
-    content = f.read()
-# print(binascii.hexlify(content))
+ap = argparse.ArgumentParser(
+    description='Convert an image to a column file of pixel value')
+ap.add_argument("-i", "--input", required=True, help="name of input image")
+ap.add_argument("-o", "--output", required=True,
+                help="name of output txt file")
 
-bin_content = ''.join(format(byte, '08b') for byte in content)
+args = vars(ap.parse_args())
 
-# Guardar el resultado en un archivo de texto
-output_filename = 'C:/Users/steph/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/image.txt'
+image = cv2.imread(args["input"])
+grayscale = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-with open(output_filename, 'w') as output_file:
-    # Decodificar y escribir en el archivo
-    output_file.write(bin_content)
+fileImage = open(args["output"], 'w')
 
-print(f"El resultado se ha guardado en '{output_filename}'.")
+rows, cols = grayscale.shape
+
+for i in range(rows):
+    for j in range(cols):
+        k = grayscale[i, j]
+        temp = "{0:08b}".format(k)
+        fileImage.write(str(temp)+'\n')
+
+fileImage.close()
