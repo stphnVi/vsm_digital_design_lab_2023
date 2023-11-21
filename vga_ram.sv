@@ -10,7 +10,8 @@ module vga_ram #(parameter DATA_WIDTH=8, parameter LENGTH=256*256)
 	reg [DATA_WIDTH-1:0] ram[LENGTH-1:0];
 	
 	initial begin
-		$readmemh("C:/Users/valer/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/image.txt",ram);
+		//$readmemh("C:/Users/valer/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/image.txt",ram);
+		$readmemh("C:/Users/steph/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/image.txt",ram);
 	end
 	
 	always @ (posedge w_clk)

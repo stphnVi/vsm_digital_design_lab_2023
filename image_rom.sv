@@ -10,8 +10,8 @@ module image_rom
 	initial begin
 		//$readmemb("../../code/build/image.txt", rom);
 		//$readmemb(dir,rom);
-		$readmemb("C:/Users/valer/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/image.txt",rom);
-		//$readmemh("C:/Users/steph/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/image.txt",rom);
+		//$readmemb("C:/Users/valer/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/image.txt",rom);
+		$readmemh("C:/Users/steph/OneDrive/Documentos/GitHub/vsm_digital_design_lab_2023/imageToHex/image.txt",rom);
 	end
 
 	always @ (posedge clk)
