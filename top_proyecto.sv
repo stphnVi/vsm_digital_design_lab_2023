@@ -54,7 +54,7 @@ top cpu_top(
 	.clk(clk_50MHz),
 	.clk_vga(clk_vga),
 	.reset(reset), 
-    .ctrl_val_1(ctrl_val_1), .ctrl_val_2(ctrl_val_2), .ctrl_val_3(ctrl_val_3),
+    .ctrl_val1(ctrl_val1), .ctrl_val2(ctrl_val2),
 	.vga_pixel_addr(img_ram_addr),
 	.vga_pixel_val(gray_val)
 );
