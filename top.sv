@@ -1,6 +1,6 @@
 module top(input 	 logic 			clk_vga, clk, reset,
 				input [31:0] vga_pixel_addr,
-				input [31:0] ctrl_val1, ctrl_val1,
+				input [31:0] ctrl_val1, ctrl_val2,
 				output [7:0] vga_pixel_val);
 				
 	logic [31:0] PCNext, Instr, ReadData;

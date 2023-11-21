@@ -70,8 +70,8 @@ always @(*) begin
 		{addr1, addr2, addr3, addr4} = 1'b0;
 		{wd1, wd2, wd3, wd4} = 1'b0;
 		
-		if(addr == (REGION5_BASE + 32'h0)) rd = ctrl_val;
-		else if(addr == (REGION5_BASE + 32'h4)) rd = ctrl_val_2;
+		if(addr == (REGION5_BASE + 32'h0)) rd = ctrl_val1;
+		else if(addr == (REGION5_BASE + 32'h4)) rd = ctrl_val2;
 		else rd = 1'b0;
 		
 	end
