@@ -3,7 +3,7 @@ module testbench();
 	logic reset;
 	logic [31:0] vga_pixel_addr = 32'd294;
 	logic  [7:0] vga_pixel_val;
-	reg [31:0] ctrl_val;
+	reg [31:0] ctrl_val1, ctrl_val2;
 	
 	clock_divider #(.DIV(2)) divider2(.clk_in(clk), .clk_out(clk_vga));
 	
@@ -11,7 +11,8 @@ module testbench();
     .clk_vga(clk_vga), 
     .clk(clk), 
     .reset(reset),
-    .ctrl_val(ctrl_val),
+    .ctrl_val1(ctrl_val1),
+	 .ctrl_val2(ctrl_val2),
     .vga_pixel_addr(vga_pixel_addr), 
     .vga_pixel_val(vga_pixel_val)
 	);
@@ -19,13 +20,16 @@ module testbench();
 	// initialize test
 	initial
 	begin
-	ctrl_val <=32'b1;
+	ctrl_val1 <=32'b1;
+	ctrl_val2 <=32'b1;
 	reset <= 1; #20; reset <= 0;
-	ctrl_val <=32'b0;
+	ctrl_val1 <=32'b0;
+	ctrl_val2 <=32'b0;
 	#200
 	reset <= 1; #20; reset <= 0;
 	#200
-	ctrl_val <=32'b1;
+	ctrl_val1 <=32'b1;
+	ctrl_val2 <=32'b1;
 
 	end
 	// generate clock to sequence tests

@@ -16,7 +16,7 @@ module chipset_5regions
 		input we, //write enable 
 		input [31:0] addr, wd, //address and write data
 		input [31:0] rd1, rd2, rd3, rd4, //read data
-		input [31:0] ctrl_val, //control value -> switch value
+		input [31:0] ctrl_val1, ctrl_val2, //control value -> switch value
 		output logic we1, we2, we3, we4, //write enable by region
 		output logic [31:0] addr1, addr2, addr3, addr4, //address by region
 		output logic [31:0] wd1, wd2, wd3, wd4, //write data by region
@@ -71,7 +71,9 @@ always @(*) begin
 		{wd1, wd2, wd3, wd4} = 1'b0;
 		
 		if(addr == (REGION5_BASE + 32'h0)) rd = ctrl_val;
+		else if(addr == (REGION5_BASE + 32'h4)) rd = ctrl_val_2;
 		else rd = 1'b0;
+		
 	end
 end
 
